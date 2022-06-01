@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\BreedRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -24,6 +26,21 @@ class Breed
      */
     private $name;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Animal::class, mappedBy="breed")
+     */
+    private $animals;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Species::class, inversedBy="breeds")
+     */
+    private $species;
+
+    public function __construct()
+    {
+        $this->animals = new ArrayCollection();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -37,6 +54,48 @@ class Breed
     public function setName(string $name): self
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Animal>
+     */
+    public function getAnimals(): Collection
+    {
+        return $this->animals;
+    }
+
+    public function addAnimal(Animal $animal): self
+    {
+        if (!$this->animals->contains($animal)) {
+            $this->animals[] = $animal;
+            $animal->setBreed($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAnimal(Animal $animal): self
+    {
+        if ($this->animals->removeElement($animal)) {
+            // set the owning side to null (unless already changed)
+            if ($animal->getBreed() === $this) {
+                $animal->setBreed(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getSpecies(): ?Species
+    {
+        return $this->species;
+    }
+
+    public function setSpecies(?Species $species): self
+    {
+        $this->species = $species;
 
         return $this;
     }

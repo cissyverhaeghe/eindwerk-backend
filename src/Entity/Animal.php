@@ -49,6 +49,22 @@ class Animal
      */
     private $description;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Agecategory::class, inversedBy="animal")
+     */
+    private $agecategory;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Breed::class, inversedBy="animals")
+     */
+    private $breed;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Sex::class, inversedBy="animals")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $sex;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -122,6 +138,42 @@ class Animal
     public function setDescription(?string $description): self
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    public function getAgecategory(): ?Agecategory
+    {
+        return $this->agecategory;
+    }
+
+    public function setAgecategory(?Agecategory $agecategory): self
+    {
+        $this->agecategory = $agecategory;
+
+        return $this;
+    }
+
+    public function getBreed(): ?Breed
+    {
+        return $this->breed;
+    }
+
+    public function setBreed(?Breed $breed): self
+    {
+        $this->breed = $breed;
+
+        return $this;
+    }
+
+    public function getSex(): ?Sex
+    {
+        return $this->sex;
+    }
+
+    public function setSex(?Sex $sex): self
+    {
+        $this->sex = $sex;
 
         return $this;
     }
