@@ -39,6 +39,16 @@ class User
      */
     private $lastname;
 
+    /**
+     * @ORM\Column(type="smallint")
+     */
+    private $authlevel;
+
+    /**
+     * @ORM\Column(type="smallint")
+     */
+    private $newsletter_sub;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -88,6 +98,30 @@ class User
     public function setLastname(string $lastname): self
     {
         $this->lastname = $lastname;
+
+        return $this;
+    }
+
+    public function getAuthlevel(): ?int
+    {
+        return $this->authlevel;
+    }
+
+    public function setAuthlevel(int $authlevel): self
+    {
+        $this->authlevel = $authlevel;
+
+        return $this;
+    }
+
+    public function getNewsletterSub(): ?int
+    {
+        return $this->newsletter_sub;
+    }
+
+    public function setNewsletterSub(int $newsletter_sub): self
+    {
+        $this->newsletter_sub = $newsletter_sub;
 
         return $this;
     }
