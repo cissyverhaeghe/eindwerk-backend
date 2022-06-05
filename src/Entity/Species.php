@@ -43,7 +43,7 @@ class Species
     }
 
     /**
-     * @Groups({"breeds:read","breeds:write"})
+     * @Groups({"animals:read","animals:write","breeds:read","breeds:write"})
      */
     public function getName(): ?string
     {
