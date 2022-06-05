@@ -5,9 +5,13 @@ namespace App\Entity;
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\AnimalRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
- * @ApiResource()
+ * @ApiResource(
+ *     normalizationContext={"groups"={"animals:read"}},
+ *     denormalizationContext={"groups"={"animals:write"}}
+ * )
  * @ORM\Entity(repositoryClass=AnimalRepository::class)
  */
 class Animal
@@ -65,11 +69,17 @@ class Animal
      */
     private $sex;
 
+    /**
+     * @Groups({"animals:read","animals:write"})
+     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
+    /**
+     * @Groups({"animals:read","animals:write"})
+     */
     public function getName(): ?string
     {
         return $this->name;
@@ -82,6 +92,9 @@ class Animal
         return $this;
     }
 
+    /**
+     * @Groups({"animals:read","animals:write"})
+     */
     public function getPhoto(): ?string
     {
         return $this->photo;
@@ -94,6 +107,9 @@ class Animal
         return $this;
     }
 
+    /**
+     * @Groups({"animals:read","animals:write"})
+     */
     public function getBirthdate(): ?\DateTimeInterface
     {
         return $this->birthdate;
@@ -106,6 +122,20 @@ class Animal
         return $this;
     }
 
+    /**
+     * @Groups({"animals:read","animals:write"})
+     */
+    public function getAge(): ?int
+    {
+        $dateOfBirth = $this->birthdate->format("Y-m-d");
+        $today = date("Y-m-d");
+        $diff = date_diff(date_create($dateOfBirth), date_create($today));
+        return $diff->format('%y');
+    }
+
+    /**
+     * @Groups({"animals:read","animals:write"})
+     */
     public function getNeutered(): ?int
     {
         return $this->neutered;
@@ -118,6 +148,9 @@ class Animal
         return $this;
     }
 
+    /**
+     * @Groups({"animals:read","animals:write"})
+     */
     public function getAdopted(): ?int
     {
         return $this->adopted;
@@ -130,6 +163,9 @@ class Animal
         return $this;
     }
 
+    /**
+     * @Groups({"animals:read","animals:write"})
+     */
     public function getDescription(): ?string
     {
         return $this->description;
@@ -142,6 +178,9 @@ class Animal
         return $this;
     }
 
+    /**
+     * @Groups({"animals:read","animals:write"})
+     */
     public function getAgecategory(): ?Agecategory
     {
         return $this->agecategory;
@@ -154,6 +193,9 @@ class Animal
         return $this;
     }
 
+    /**
+     * @Groups({"animals:read","animals:write"})
+     */
     public function getBreed(): ?Breed
     {
         return $this->breed;
@@ -166,6 +208,9 @@ class Animal
         return $this;
     }
 
+    /**
+     * @Groups({"animals:read","animals:write"})
+     */
     public function getSex(): ?Sex
     {
         return $this->sex;
