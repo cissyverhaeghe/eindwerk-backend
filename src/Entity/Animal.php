@@ -222,4 +222,12 @@ class Animal
 
         return $this;
     }
+
+    /**
+     * @Groups({"animals:read","animals:write"})
+     */
+    public function getSpecies(): ?Species
+    {
+        return $this->getBreed()->getSpecies();
+    }
 }
