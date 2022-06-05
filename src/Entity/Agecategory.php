@@ -7,6 +7,7 @@ use App\Repository\AgecategoryRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ApiResource()
@@ -41,6 +42,9 @@ class Agecategory
         return $this->id;
     }
 
+    /**
+     * @Groups({"animals:read","animals:write"})
+     */
     public function getName(): ?string
     {
         return $this->name;
