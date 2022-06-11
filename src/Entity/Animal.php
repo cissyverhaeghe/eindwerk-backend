@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\AnimalRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 
@@ -70,7 +72,17 @@ class Animal
     private $sex;
 
     /**
-     * @Groups({"animals:read","animals:write"})
+     * @ORM\OneToMany(targetEntity=Adoptionrequest::class, mappedBy="animal")
+     */
+    private $adoptionrequests;
+
+    public function __construct()
+    {
+        $this->adoptionrequests = new ArrayCollection();
+    }
+
+    /**
+     * @Groups({"animals:read","animals:write", "adoptionrequests:read","adoptionrequests:write"})
      */
     public function getId(): ?int
     {
@@ -78,7 +90,7 @@ class Animal
     }
 
     /**
-     * @Groups({"animals:read","animals:write"})
+     * @Groups({"animals:read","animals:write", "adoptionrequests:read","adoptionrequests:write"})
      */
     public function getName(): ?string
     {
@@ -229,5 +241,35 @@ class Animal
     public function getSpecies(): ?Species
     {
         return $this->getBreed()->getSpecies();
+    }
+
+    /**
+     * @return Collection<int, Adoptionrequest>
+     */
+    public function getAdoptionrequests(): Collection
+    {
+        return $this->adoptionrequests;
+    }
+
+    public function addAdoptionrequest(Adoptionrequest $adoptionrequest): self
+    {
+        if (!$this->adoptionrequests->contains($adoptionrequest)) {
+            $this->adoptionrequests[] = $adoptionrequest;
+            $adoptionrequest->setAnimal($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAdoptionrequest(Adoptionrequest $adoptionrequest): self
+    {
+        if ($this->adoptionrequests->removeElement($adoptionrequest)) {
+            // set the owning side to null (unless already changed)
+            if ($adoptionrequest->getAnimal() === $this) {
+                $adoptionrequest->setAnimal(null);
+            }
+        }
+
+        return $this;
     }
 }

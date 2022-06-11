@@ -3,9 +3,12 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
@@ -45,6 +48,19 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $lastname;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Adoptionrequest::class, mappedBy="user")
+     */
+    private $adoptionrequests;
+
+    public function __construct()
+    {
+        $this->adoptionrequests = new ArrayCollection();
+    }
+
+    /**
+     * @Groups({"adoptionrequests:read","adoptionrequests:write"})
+     */
     public function getId(): ?int
     {
         return $this->id;
@@ -154,6 +170,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setLastname(string $lastname): self
     {
         $this->lastname = $lastname;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Adoptionrequest>
+     */
+    public function getAdoptionrequests(): Collection
+    {
+        return $this->adoptionrequests;
+    }
+
+    public function addAdoptionrequest(Adoptionrequest $adoptionrequest): self
+    {
+        if (!$this->adoptionrequests->contains($adoptionrequest)) {
+            $this->adoptionrequests[] = $adoptionrequest;
+            $adoptionrequest->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAdoptionrequest(Adoptionrequest $adoptionrequest): self
+    {
+        if ($this->adoptionrequests->removeElement($adoptionrequest)) {
+            // set the owning side to null (unless already changed)
+            if ($adoptionrequest->getUser() === $this) {
+                $adoptionrequest->setUser(null);
+            }
+        }
 
         return $this;
     }
