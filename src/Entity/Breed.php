@@ -45,13 +45,16 @@ class Breed
         $this->animals = new ArrayCollection();
     }
 
+    /**
+     * @Groups({"species:read","species:write"})
+     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
     /**
-     * @Groups({"animals:read","animals:write","breeds:read","breeds:write"})
+     * @Groups({"animals:read","animals:write","breeds:read","breeds:write", "species:read","species:write"})
      */
     public function getName(): ?string
     {

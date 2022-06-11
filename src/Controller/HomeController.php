@@ -36,15 +36,6 @@ class HomeController extends AbstractController
         return $this->json($data);
     }
 
-    /**
-     * @Route("/api/breed/{id}")
-     */
-    public function getBreeds(BreedRepository $breedRepository, $id)
-    {
-        $data = $breedRepository->findBySpeciesField($id);
-
-        return $this->json($data);
-    }
 
 
 }

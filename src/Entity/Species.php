@@ -10,7 +10,10 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
- * @ApiResource()
+ * @ApiResource(
+ *     normalizationContext={"groups"={"species:read"}},
+ *     denormalizationContext={"groups"={"species:write"}}
+ * )
  * @ORM\Entity(repositoryClass=SpeciesRepository::class)
  */
 class Species
@@ -59,6 +62,7 @@ class Species
 
     /**
      * @return Collection<int, Breed>
+     * @Groups({"species:read","species:write"})
      */
     public function getBreeds(): Collection
     {
