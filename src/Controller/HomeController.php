@@ -15,7 +15,7 @@ class HomeController extends AbstractController
      */
     public function getCats(DBManager $DBManager)
     {
-        $data = $DBManager->GetData("SELECT animal.id, animal.name, photo, animal.breed_id, sex_id, neutered, adopted FROM animal
+        $data = $DBManager->GetData("SELECT animal.id, animal.name, photo, animal.breed_id, sex_id, neutered, adopted, agecategory_id FROM animal
                                 INNER JOIN breed b on animal.breed_id = b.id
                                 INNER JOIN species s on b.species_id = s.id
                                 WHERE species_id = 1");
@@ -28,7 +28,7 @@ class HomeController extends AbstractController
      */
     public function getDogs(DBManager $DBManager)
     {
-        $data = $DBManager->GetData("SELECT animal.id, animal.name, photo, animal.breed_id, sex_id, neutered, adopted FROM animal
+        $data = $DBManager->GetData("SELECT animal.id, animal.name, photo, animal.breed_id, sex_id, neutered, adopted, agecategory_id FROM animal
                                 INNER JOIN breed b on animal.breed_id = b.id
                                 INNER JOIN species s on b.species_id = s.id
                                 WHERE species_id = 2");
