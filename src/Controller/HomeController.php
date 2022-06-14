@@ -37,5 +37,17 @@ class HomeController extends AbstractController
     }
 
 
+    /**
+     * @Route("/api/adoptionrequest", methods={"POST"}, name="api_adoptionrequest")
+     */
+    public function postAdoptionrequest(DBManager $DBManager)
+    {
+
+        $contents = json_decode( file_get_contents("php://input") );
+
+        return $this->json($contents->title);
+    }
+
+
 
 }
