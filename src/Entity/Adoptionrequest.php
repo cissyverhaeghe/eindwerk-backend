@@ -60,7 +60,7 @@ class Adoptionrequest
     }
 
     /**
-     * @Groups({"adoptionrequests:read","adoptionrequests:write", "users:read","users:write"})
+     * @Groups({"adoptionrequests:read","adoptionrequests:write"})
      */
     public function getDate(): ?\DateTimeInterface
     {
@@ -72,6 +72,14 @@ class Adoptionrequest
         $this->date = $date;
 
         return $this;
+    }
+
+    /**
+     * @Groups({"users:read","users:write"})
+     */
+    public function getDateString(): ?string
+    {
+        return $this->date->format('Y-m-d H:i:s');
     }
 
     /**
