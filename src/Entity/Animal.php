@@ -82,7 +82,7 @@ class Animal
     }
 
     /**
-     * @Groups({"animals:read","animals:write", "adoptionrequests:read","adoptionrequests:write"})
+     * @Groups({"animals:read","animals:write", "adoptionrequests:read","adoptionrequests:write", "users:read","users:write"})
      */
     public function getId(): ?int
     {
@@ -90,7 +90,7 @@ class Animal
     }
 
     /**
-     * @Groups({"animals:read","animals:write", "adoptionrequests:read","adoptionrequests:write"})
+     * @Groups({"animals:read","animals:write", "adoptionrequests:read","adoptionrequests:write", "users:read","users:write"})
      */
     public function getName(): ?string
     {

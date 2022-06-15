@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -12,6 +13,10 @@ use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
+ * @ApiResource(
+ *     normalizationContext={"groups"={"users:read"}},
+ *     denormalizationContext={"groups"={"users:write"}}
+ * )
  */
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
@@ -150,10 +155,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         // $this->plainPassword = null;
     }
 
+    /**
+     * @Groups({"users:read","users:write"})
+     */
     public function getFirstname(): ?string
     {
         return $this->firstname;
     }
+
 
     public function setFirstname(string $firstname): self
     {
@@ -176,6 +185,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * @return Collection<int, Adoptionrequest>
+     * @Groups({"users:read","users:write"})
      */
     public function getAdoptionrequests(): Collection
     {

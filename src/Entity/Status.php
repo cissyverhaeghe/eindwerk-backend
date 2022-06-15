@@ -46,7 +46,7 @@ class Status
     }
 
     /**
-     * @Groups({"adoptionrequests:read","adoptionrequests:write"})
+     * @Groups({"adoptionrequests:read","adoptionrequests:write", "users:read","users:write"})
      */
     public function getName(): ?string
     {

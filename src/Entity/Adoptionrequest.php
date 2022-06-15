@@ -52,7 +52,7 @@ class Adoptionrequest
     private $status;
 
     /**
-     * @Groups({"adoptionrequests:read","adoptionrequests:write"})
+     * @Groups({"adoptionrequests:read","adoptionrequests:write", "users:read","users:write"})
      */
     public function getId(): ?int
     {
@@ -60,7 +60,7 @@ class Adoptionrequest
     }
 
     /**
-     * @Groups({"adoptionrequests:read","adoptionrequests:write"})
+     * @Groups({"adoptionrequests:read","adoptionrequests:write", "users:read","users:write"})
      */
     public function getDate(): ?\DateTimeInterface
     {
@@ -75,7 +75,7 @@ class Adoptionrequest
     }
 
     /**
-     * @Groups({"adoptionrequests:read","adoptionrequests:write"})
+     * @Groups({"adoptionrequests:read","adoptionrequests:write", "users:read","users:write"})
      */
     public function getMessage(): ?string
     {
@@ -90,7 +90,7 @@ class Adoptionrequest
     }
 
     /**
-     * @Groups({"adoptionrequests:read","adoptionrequests:write"})
+     * @Groups({"adoptionrequests:read","adoptionrequests:write", "users:read","users:write"})
      */
     public function getAnimal(): ?Animal
     {
@@ -120,7 +120,7 @@ class Adoptionrequest
     }
 
     /**
-     * @Groups({"adoptionrequests:read","adoptionrequests:write"})
+     * @Groups({"adoptionrequests:read","adoptionrequests:write", "users:read","users:write"})
      */
     public function getStatus(): ?Status
     {
