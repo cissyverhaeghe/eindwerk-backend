@@ -43,11 +43,33 @@ class HomeController extends AbstractController
     public function postAdoptionrequest(DBManager $DBManager)
     {
 
-        $contents = json_decode( file_get_contents("php://input") );
+        //get the data from the frontend
+        $contents = json_decode(file_get_contents("php://input"));
 
-        return $this->json($contents->title);
+        //create connection
+        $conn = $DBManager->getConnection();
+
+        //prepare SQL statement
+        $sqlQuery = "INSERT INTO adoptionrequest 
+                     SET date = :date, message = :message, animal_id = :animal_id, user_id = :user_id, status_id = :status_id";
+        $stmt = $conn->prepare($sqlQuery);
+
+        //sanitize
+        $message = htmlspecialchars(strip_tags($contents->message));
+
+        //bind params
+        $stmt->bindParam(":date", $contents->date);
+        $stmt->bindParam(":message", $message);
+        $stmt->bindParam(":animal_id", $contents->animal_id);
+        $stmt->bindParam(":user_id", $contents->user_id);
+        $stmt->bindParam(":status_id", $contents->status_id);
+
+
+        //execute SQL statement
+        $stmt->execute();
+
+        return $this->json($contents);
     }
-
 
 
 }
