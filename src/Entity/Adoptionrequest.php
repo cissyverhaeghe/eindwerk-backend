@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\AdoptionrequestRepository;
+use App\Repository\StatusRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 
@@ -51,12 +52,19 @@ class Adoptionrequest
      */
     private $status;
 
+    private $statusName;
+
     /**
      * @Groups({"adoptionrequests:read","adoptionrequests:write", "users:read","users:write"})
      */
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getStatusName(): ?string
+    {
+       return $this->status->getName();
     }
 
     /**

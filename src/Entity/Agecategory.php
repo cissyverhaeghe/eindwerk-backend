@@ -57,13 +57,13 @@ class Agecategory
         return $this;
     }
 
-    /**
-     * @return Collection<int, Animal>
-     */
-    public function getAnimals(): Collection
-    {
-        return $this->animals;
-    }
+//    /**
+//     * @return Collection<int, Animal>
+//     */
+//    public function getAnimals(): Collection
+//    {
+//        return $this->animals;
+//    }
 
     public function addAnimal(Animal $animal): self
     {
