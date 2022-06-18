@@ -1,0 +1,16 @@
+:root {
+    --sidebar-bg: #F0E2D7;
+    --body-bg: #F0E2D7;
+    --sidebar-menu-active-item-color: #FAFCFC;
+    --sidebar-menu-active-item-bg: #A6A89A;
+    --content-top-border-color: #FAFCFC;
+    --table-cell-border-color: #FAFCFC;
+    --sidebar-border-color: #FAFCFC;
+    --color-primary: #A6A89A;
+    --sidebar-menu-icon-color: #51504B;
+}
+
+.page-item.active .page-link {
+    background-color: #51504B;
+    border-color: #51504B;
+}

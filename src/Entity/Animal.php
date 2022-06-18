@@ -89,6 +89,11 @@ class Animal
         return $this->id;
     }
 
+    public function getBreedName(): ?string
+    {
+        return $this->breed->getName();
+    }
+
     /**
      * @Groups({"animals:read","animals:write", "adoptionrequests:read","adoptionrequests:write", "users:read","users:write"})
      */

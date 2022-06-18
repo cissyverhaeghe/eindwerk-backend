@@ -52,8 +52,6 @@ class Adoptionrequest
      */
     private $status;
 
-    private $statusName;
-
     /**
      * @Groups({"adoptionrequests:read","adoptionrequests:write", "users:read","users:write"})
      */
@@ -65,6 +63,14 @@ class Adoptionrequest
     public function getStatusName(): ?string
     {
        return $this->status->getName();
+    }
+
+    public function getUserFullName(): ?string
+    {
+        $firstName = $this->user->getFirstName();
+        $lastName = $this->user->getLastName();
+
+        return $lastName . " " . $firstName;
     }
 
     /**
