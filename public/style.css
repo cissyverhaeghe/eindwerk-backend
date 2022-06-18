@@ -14,3 +14,7 @@
     background-color: #51504B;
     border-color: #51504B;
 }
+
+.form-check-input:checked {
+    background-color: #A6A89A;
+}
