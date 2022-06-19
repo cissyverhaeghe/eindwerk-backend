@@ -37,6 +37,11 @@ class Status
         $this->adoptionrequests = new ArrayCollection();
     }
 
+    public function __toString(): string
+    {
+        return $this->name;
+    }
+
     /**
      * @Groups({"adoptionrequests:read","adoptionrequests:write"})
      */

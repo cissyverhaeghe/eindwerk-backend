@@ -27,16 +27,14 @@ class AnimalCrudController extends AbstractCrudController
             ->setBasePath('uploads/photos')
             ->setUploadDir('public/uploads/photos')
             ->setUploadedFileNamePattern('[slug]-[timestamp].[extension]');
-//        yield BooleanField::new('neutered')
-//            ->renderAsSwitch(false);;
-//        yield BooleanField::new('adopted')
-//            ->renderAsSwitch(false);;
-        yield DateField::new('birthdate')
-            ->hideOnForm();
-        yield TextField::new('description')
-            ->hideOnForm();
-        yield TextField::new('breedName')
-            ->hideOnForm();
+        yield BooleanField::new('neutered')
+            ->renderAsSwitch(false);
+        yield BooleanField::new('adopted')
+            ->renderAsSwitch(false);
+        yield DateField::new('birthdate');
+        yield TextField::new('description');
         yield AssociationField::new('agecategory');
+        yield AssociationField::new('breed');
+        yield AssociationField::new('sex');
     }
 }
