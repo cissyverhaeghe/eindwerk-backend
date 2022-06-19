@@ -28,8 +28,9 @@ class AdoptionrequestCrudController extends AbstractCrudController
                 ->hideOnForm();
             yield TextField::new('message')
                 ->hideOnForm();
-            yield TextField::new('statusName')
-                ->hideOnForm();
+            yield AssociationField::new('status');
+            yield AssociationField::new('animal')
+            ->hideOnForm();
              yield TextField::new('userFullName')
             ->hideOnForm();
 //            associationField::new('status')->autocomplete(),

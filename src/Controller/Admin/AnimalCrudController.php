@@ -34,7 +34,8 @@ class AnimalCrudController extends AbstractCrudController
         yield DateField::new('birthdate');
         yield TextField::new('description');
         yield AssociationField::new('agecategory');
-        yield AssociationField::new('breed');
+        yield AssociationField::new('breed')
+            ->autocomplete();
         yield AssociationField::new('sex');
     }
 }

@@ -18,3 +18,7 @@
 .form-check-input:checked {
     background-color: #A6A89A;
 }
+
+#main {
+    margin-bottom: 250px;
+}

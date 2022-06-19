@@ -41,12 +41,12 @@ class Animal
     private $birthdate;
 
     /**
-     * @ORM\Column(type="smallint", nullable=true)
+     * @ORM\Column(type="boolean", nullable=true)
      */
     private $neutered;
 
     /**
-     * @ORM\Column(type="smallint", nullable=true)
+     * @ORM\Column(type="boolean", nullable=true)
      */
     private $adopted;
 
@@ -79,6 +79,12 @@ class Animal
     public function __construct()
     {
         $this->adoptionrequests = new ArrayCollection();
+    }
+
+
+    public function __toString(): string
+    {
+        return $this->name;
     }
 
     /**
@@ -153,12 +159,12 @@ class Animal
     /**
      * @Groups({"animals:read","animals:write"})
      */
-    public function getNeutered(): ?int
+    public function getNeutered(): ?bool
     {
         return $this->neutered;
     }
 
-    public function setNeutered(?int $neutered): self
+    public function setNeutered(?bool $neutered): self
     {
         $this->neutered = $neutered;
 
@@ -168,12 +174,12 @@ class Animal
     /**
      * @Groups({"animals:read","animals:write"})
      */
-    public function getAdopted(): ?int
+    public function getAdopted(): ?bool
     {
         return $this->adopted;
     }
 
-    public function setAdopted(?int $adopted): self
+    public function setAdopted(?bool $adopted): self
     {
         $this->adopted = $adopted;
 

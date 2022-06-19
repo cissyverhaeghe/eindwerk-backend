@@ -15,15 +15,18 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class DashboardController extends AbstractDashboardController
 {
+
     /**
      * @Route("/admin", name="admin")
      */
     public function index(): Response
     {
         // redirect to some CRUD controller
-        $routeBuilder = $this->get(AdminUrlGenerator::class);
+//        $routeBuilder = $this->get(AdminUrlGenerator::class);
+//
+//        return parent::index();
+        return $this->render('admin/index.html.twig');
 
-        return parent::index();
     }
 
 
