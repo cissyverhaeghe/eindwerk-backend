@@ -13,7 +13,7 @@ class JSONLoginController extends AbstractController
     public function login()
     {
         return $this->json([
-            'user' => $this->getUser() ? $this->getUser()->getId() : null,
+            'id' => $this->getUser() ? $this->getUser()->getId() : null,
         ]);
     }
 
