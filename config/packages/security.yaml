@@ -29,11 +29,26 @@ security:
             # https://symfony.com/doc/current/security/impersonating_user.html
             # switch_user: true
 
+            json_login:
+                check_path: app_json_login
+                username_path: email
+                password_path: password
+
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
+        - { path: '/register', roles: [ IS_AUTHENTICATED_ANONYMOUSLY ] }
+        - { path: '/login', roles: [ IS_AUTHENTICATED_ANONYMOUSLY ] }
+        - { path: '/api/cats', roles: [ IS_AUTHENTICATED_ANONYMOUSLY ] }
+        - { path: '/api/dogs', roles: [ IS_AUTHENTICATED_ANONYMOUSLY ] }
+        - { path: '/api/species', roles: [ IS_AUTHENTICATED_ANONYMOUSLY ] }
+        - { path: '/api/animals', roles: [ IS_AUTHENTICATED_ANONYMOUSLY ] }
+        - { path: '/api', roles: [ ROLE_ADMIN ] }
+
+#        - { path: '/', roles: [ IS_AUTHENTICATED_FULLY, ROLE_USER ] }
+
 
 when@test:
     security:
