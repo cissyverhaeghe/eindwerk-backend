@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="62104636-23dd-423c-af50-62bf03ecf3ca" name="fs_cissy@wdev2.be" url="https://wdev2.be">
+        <fileTransfer rootFolder="/web" host="ftp.wdev2.be" port="21">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
