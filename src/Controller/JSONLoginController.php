@@ -13,7 +13,8 @@ class JSONLoginController extends AbstractController
     public function login()
     {
         return $this->json([
-            'id' => $this->getUser() ? $this->getUser()->getId() : null,
+            'id' => $this->getUser() ? $this->getUser()->getId() : "something went wrong",
+            'firstname' => $this->getUser()? $this->getUser()->getFirstName() : "something went wrong",
         ]);
     }
 

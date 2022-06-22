@@ -45,9 +45,9 @@ security:
         - { path: '/api/dogs', roles: [ IS_AUTHENTICATED_ANONYMOUSLY ] }
         - { path: '/api/species', roles: [ IS_AUTHENTICATED_ANONYMOUSLY ] }
         - { path: '/api/animals', roles: [ IS_AUTHENTICATED_ANONYMOUSLY ] }
-        - { path: '/api/users', roles: [ ROLE_USER ] }
-        - { path: '/api/adoptionrequest', roles: [ ROLE_USER ] }
-        - { path: '/api/adoptionrequests', roles: [ ROLE_USER ] }
+        - { path: '/api/users', roles: [ IS_AUTHENTICATED_ANONYMOUSLY ] }
+        - { path: '/api/adoptionrequest', roles: [ IS_AUTHENTICATED_ANONYMOUSLY ] }
+        - { path: '/api/adoptionrequests', roles: [ IS_AUTHENTICATED_ANONYMOUSLY ]  }
         - { path: '/api', roles: [ ROLE_ADMIN ] }
         - { path: '/admin', roles: [ ROLE_ADMIN ] }
 
