@@ -27,7 +27,8 @@ class AdoptionrequestCrudController extends AbstractCrudController
             yield DateField::new('date')
                 ->hideOnForm();
             yield TextField::new('message')
-                ->hideOnForm();
+                ->setDisabled();
+
             yield AssociationField::new('status');
             yield AssociationField::new('animal')
             ->hideOnForm();

@@ -56,7 +56,7 @@ class HomeController extends AbstractController
 
         //sanitize
         $message = htmlspecialchars(strip_tags($contents->message));
-
+            //htmlentities //html_entities_decode
         //bind params
         $stmt->bindParam(":date", $contents->date);
         $stmt->bindParam(":message", $message);

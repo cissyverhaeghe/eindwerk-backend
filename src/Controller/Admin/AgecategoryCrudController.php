@@ -28,11 +28,7 @@ class AgecategoryCrudController extends AbstractCrudController
 
     }
 
-    public function configureActions(Actions $actions): Actions
-    {
-        return parent::configureActions($actions)
-            ->disable(Action::DETAIL);
-    }
+
 
 
 }
