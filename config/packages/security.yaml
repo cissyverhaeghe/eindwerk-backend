@@ -11,6 +11,21 @@ security:
                 class: App\Entity\User
                 property: email
     firewalls:
+        login:
+            pattern: ^/api/login_check
+            stateless: true
+            json_login:
+                check_path: /api/login_check # or api_login_check as defined in config/routes.yaml
+                success_handler: lexik_jwt_authentication.handler.authentication_success
+                failure_handler: lexik_jwt_authentication.handler.authentication_failure
+
+        api:
+            pattern: ^/api
+            stateless: true
+            guard:
+                authenticators:
+                    - lexik_jwt_authentication.jwt_token_authenticator
+
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
@@ -44,11 +59,12 @@ security:
         - { path: '/api/cats', roles: [ IS_AUTHENTICATED_ANONYMOUSLY ] }
         - { path: '/api/dogs', roles: [ IS_AUTHENTICATED_ANONYMOUSLY ] }
         - { path: '/api/species', roles: [ IS_AUTHENTICATED_ANONYMOUSLY ] }
-        - { path: '/api/animals', roles: [ IS_AUTHENTICATED_ANONYMOUSLY ] }
+        - { path: '/api/animals', roles: [ IS_AUTHENTICATED_FULLY ] }
         - { path: '/api/users', roles: [ IS_AUTHENTICATED_ANONYMOUSLY ] }
         - { path: '/api/adoptionrequest', roles: [ IS_AUTHENTICATED_ANONYMOUSLY ] }
         - { path: '/api/adoptionrequests', roles: [ IS_AUTHENTICATED_ANONYMOUSLY ]  }
-        - { path: '/api', roles: [ ROLE_ADMIN ] }
+        - { path: '^/api/login_check', roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: '^/api', roles: [ IS_AUTHENTICATED_FULLY ] }
         - { path: '/admin', roles: [ ROLE_ADMIN ] }
 
 #        - { path: '/', roles: [ IS_AUTHENTICATED_FULLY, ROLE_USER ] }
