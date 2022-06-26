@@ -1,10 +1,15 @@
 {% extends 'base.html.twig' %}
 
+{% block head %}
+
+{% endblock %}
+
 {% block title %}Register{% endblock %}
 
 {% block body %}
-    <h1>Register here</h1>
-
+    <h1>LAB ANIMAL SEARCHES HOME</h1>
+    <h2>Register</h2>
+    <div class="form">
     {{ form_start(registrationForm) }}
         {{ form_row(registrationForm.firstname) }}
         {{ form_row(registrationForm.lastname) }}
@@ -16,4 +21,5 @@
 
         <button type="submit" class="btn">Register</button>
     {{ form_end(registrationForm) }}
+    </div>
 {% endblock %}
