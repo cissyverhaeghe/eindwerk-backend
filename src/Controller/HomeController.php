@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Repository\BreedRepository;
 use App\Services\DBManager;
+use App\Services\Sanitizer;
 use \Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -40,7 +41,7 @@ class HomeController extends AbstractController
     /**
      * @Route("/api/adoptionrequest", methods={"POST"}, name="api_adoptionrequest")
      */
-    public function postAdoptionrequest(DBManager $DBManager)
+    public function postAdoptionrequest(DBManager $DBManager , Sanitizer $sanitizer)
     {
 
         //get the data from the frontend
@@ -55,7 +56,7 @@ class HomeController extends AbstractController
         $stmt = $conn->prepare($sqlQuery);
 
         //sanitize
-        $message = htmlspecialchars(strip_tags($contents->message));
+        $message = $sanitizer->sanitize($contents->message);
             //htmlentities //html_entities_decode
         //bind params
         $stmt->bindParam(":date", $contents->date);

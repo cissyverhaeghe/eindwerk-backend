@@ -89,10 +89,10 @@ class JWTSubscriber implements EventSubscriberInterface
                 $expire = new \DateTime("+1 day"),
                 $path = "/",
                 $domain = null,
-                $secure = false,
+                $secure = true,
                 $httpOnly = true,
                 $raw = false,
-                $sameSite = 'lax'    //kan ook 'lax' zijn, dat is de default waarde
+                $sameSite = 'none'    //kan ook 'lax' zijn, dat is de default waarde
             )
         );
     }
