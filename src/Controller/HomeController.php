@@ -11,6 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class HomeController extends AbstractController
 {
 
+    //custom api call to get all cat objects
     /**
      * @Route("/api/cats", methods={"GET"}, name="api_cats")
      */
@@ -24,6 +25,7 @@ class HomeController extends AbstractController
         return $this->json($data);
     }
 
+    //custom api call to get all dog objects
     /**
      * @Route("/api/dogs", methods={"GET"}, name="api_dogs")
      */
@@ -38,6 +40,7 @@ class HomeController extends AbstractController
     }
 
 
+    //custom api call to save adoptionrequests in the database
     /**
      * @Route("/api/adoptionrequest", methods={"POST"}, name="api_adoptionrequest")
      */

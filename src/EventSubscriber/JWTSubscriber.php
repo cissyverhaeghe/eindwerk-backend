@@ -59,13 +59,10 @@ class JWTSubscriber implements EventSubscriberInterface
 
     public function onAuthenticationSuccess(AuthenticationSuccessEvent $event)
     {
+        //send user data with the token
         $eventData = $event->getData();
-//        $eventUser = $event->getUser();
-//        $eventData['user'] = $event->getUser();
         $eventData['user']['id'] = $event->getUser()->getId();
         $eventData['user']['firstname'] = $event->getUser()->getFirstname();
-
-//        $eventData['firstName'] = $eventUser->getFirstname();
 
         $event->setData($eventData);
 
